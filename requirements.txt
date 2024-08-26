@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+mypy
+pydantic
+pydantic-settings
+loguru
