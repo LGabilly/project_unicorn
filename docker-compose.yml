@@ -7,6 +7,7 @@ services:
       - OLLAMA_BASE_URL=http://ollama:11434
     depends_on:
       - ollama
+      - elasticsearch
 
   ollama:
     image: ollama/ollama:latest
@@ -14,3 +15,25 @@ services:
       - "11434:11434"
     volumes:
       - ~/.ollama:/root/.ollama
+
+  elasticsearch:
+    image: elasticsearch:8.8.0
+    ports:
+      - 9200:9200
+      - 9300:9300
+    networks:
+      - elastic
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.7.1
+    container_name: kibana
+    ports:
+      - 5601:5601
+    networks:
+      - elastic
+
+networks:
+  elastic:
