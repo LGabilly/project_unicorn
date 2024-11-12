@@ -10,9 +10,11 @@ unicorn_chat = UnicornChat()
 
 
 @router.post(UnicornRoutes.chat, tags=["Chat"])
-def eprescription_posology_prediction_inference(user_query: str) -> dict:
+def game_rule_query(user_query: str) -> str:
     base_logger.debug(f"Received : {user_query}")
-    result = unicorn_chat.call(user_query=user_query)
+    result = unicorn_chat.call(
+        user_query=user_query,
+    )
     base_logger.info(f"Response : {result}")
 
     return result

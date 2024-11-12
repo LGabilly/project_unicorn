@@ -4,3 +4,9 @@ mypy
 pydantic
 pydantic-settings
 loguru
+elasticsearch_dsl
+jupyterlab
+tqdm
+langchain
+langchain_community
+langchain-ollama

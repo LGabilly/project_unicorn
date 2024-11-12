@@ -3,12 +3,13 @@ from pathlib import Path
 
 from loguru import logger
 from pydantic import Field
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_file=".env")
-    OLLAMA_BASE_URL: str = "http://localhost:11434"
+    # model_config = SettingsConfigDict(env_file=".env")
+    OLLAMA_BASE_URL: str = "http://ollama:11434"
+    ES_BASE_URL: str = "http://elasticsearch:9200"
     PROJ_NAME: str = "Project Unicorn"
     PROJ_DIR: Path = Path(__file__).parent
     SRC_DIR: Path = PROJ_DIR / "src"
