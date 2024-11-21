@@ -9,11 +9,11 @@ from src.models.gameRule import GameRule
 els = Elasticsearch(base_settings.ES_BASE_URL)
 
 
-def load_example_rules():
-    with open(base_settings.DATA_DIR / "example_rules.json", "r") as f:
+def load_example_rules(game_name: str):
+    with open(base_settings.DATA_DIR / f"{game_name}.json", "r") as f:
         data = json.loads(f.read())
 
-    GameRule._index.delete(ignore_unavailable=True, using=els)
+    # GameRule._index.delete(ignore_unavailable=True, using=els)
     GameRule.init(using=els)
 
     for data_line in tqdm(data, desc="Indexing documents..."):
@@ -28,4 +28,4 @@ def load_example_rules():
 
 
 if __name__ == "__main__":
-    load_example_rules()
+    load_example_rules("seven_wonders")
